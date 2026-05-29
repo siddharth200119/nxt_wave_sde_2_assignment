@@ -2,9 +2,10 @@ import importlib
 import os
 from pathlib import Path
 from typing import Set, Tuple
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from src.utils import logger
 from src.models import Route
+from src.middlewares.rbac import RoleChecker
 
 main_router = APIRouter(prefix="/api")
 REGISTERED_ROUTES: Set[Tuple[str, str]] = set()
@@ -84,6 +85,11 @@ def register_module_routes(module_path: str, default_path: str):
             else:
                 REGISTERED_ROUTES.add(route_key)
                 
+                # Build route-level dependencies for RBAC
+                dependencies = []
+                if r.required_roles:
+                    dependencies.append(Depends(RoleChecker(r.required_roles)))
+                
                 # Add to FastAPI router
                 main_router.add_api_route(
                     path=path,
@@ -91,7 +97,8 @@ def register_module_routes(module_path: str, default_path: str):
                     methods=[method],
                     summary=r.summary,
                     description=r.description,
-                    tags=r.tags
+                    tags=r.tags,
+                    dependencies=dependencies
                 )
                 logger.debug(f"✅ Registered route: {method} {path} -> {module_path}.{r.function.__name__}")
 
