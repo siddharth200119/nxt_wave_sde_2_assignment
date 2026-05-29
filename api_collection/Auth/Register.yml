@@ -1,0 +1,113 @@
+info:
+  name: Register
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://127.0.0.1:8000/api/auth/register
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "organization_id": "60e8b741-b9be-4445-b163-0e0ec886e90f",
+        "email": "admin@backroombuilds.com",
+        "password": "password",
+        "role": "ADMIN"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Success
+    request:
+      url: http://127.0.0.1:8000/api/auth/register
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "organization_id": "60e8b741-b9be-4445-b163-0e0ec886e90f",
+            "email": "admin@backroombuilds.com",
+            "password": "password",
+            "role": "ADMIN"
+          }
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: date
+          value: Fri, 29 May 2026 19:51:17 GMT
+        - name: server
+          value: uvicorn
+        - name: content-length
+          value: "686"
+        - name: content-type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "status_code": 201,
+            "message": "User registered successfully",
+            "data": {
+              "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3OWJmNWM5Ni1kZDQ1LTRiODQtOTFkOS05MjIwMGNhMDQ1MGMiLCJvcmdfaWQiOiI2MGU4Yjc0MS1iOWJlLTQ0NDUtYjE2My0wZTBlYzg4NmU5MGYiLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3ODAwOTE0Nzd9.YaI-v_H3cTlaEc9tH0m-LNvn0w6xVW_s5glYo88xDdM",
+              "refresh_token": "rfr_a5947e328161c65f0146f1352de13e0b3cc2eef1f905df236cb787990d5b86bb",
+              "user": {
+                "id": "79bf5c96-dd45-4b84-91d9-92200ca0450c",
+                "organization_id": "60e8b741-b9be-4445-b163-0e0ec886e90f",
+                "email": "admin@backroombuilds.com",
+                "role": "ADMIN",
+                "is_active": true,
+                "created_at": "2026-05-29T19:51:17.993950Z",
+                "updated_at": "2026-05-29T19:51:17.993950Z"
+              }
+            }
+          }
+  - name: Duplicate Email
+    request:
+      url: http://127.0.0.1:8000/api/auth/register
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "organization_id": "60e8b741-b9be-4445-b163-0e0ec886e90f",
+            "email": "admin@backroombuilds.com",
+            "password": "password",
+            "role": "ADMIN"
+          }
+    response:
+      status: 409
+      statusText: Conflict
+      headers:
+        - name: date
+          value: Fri, 29 May 2026 19:55:26 GMT
+        - name: server
+          value: uvicorn
+        - name: content-length
+          value: "99"
+        - name: content-type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "status_code": 409,
+            "message": "User with this email already exists in the organization",
+            "data": null
+          }

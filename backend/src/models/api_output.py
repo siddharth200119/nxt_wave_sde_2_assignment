@@ -29,7 +29,7 @@ class APIOutput(BaseModel, Generic[T]):
                 status_code=status_code,
                 message=message,
                 data=data,
-            ).model_dump(),
+            ).model_dump(mode="json"),
         )
 
     @staticmethod
@@ -47,7 +47,7 @@ class APIOutput(BaseModel, Generic[T]):
                 status_code=status_code,
                 message=message,
                 data=data,
-            ).model_dump(),
+            ).model_dump(mode="json"),
         )
 
     @staticmethod

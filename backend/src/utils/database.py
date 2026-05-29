@@ -1,9 +1,11 @@
 import os
 import psycopg2
-from psycopg2.extras import RealDictCursor
+from psycopg2.extras import RealDictCursor, register_uuid
 from contextlib import contextmanager
 from src.utils import logger
 
+# Register UUID adapter for psycopg2
+register_uuid()
 
 import time
 

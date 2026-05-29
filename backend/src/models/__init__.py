@@ -1,5 +1,6 @@
 from .api_output import APIOutput
 from .sse_output import SSEOutput
 from .route import Route
-from .role import Role
+from .organization import Organization
 from .user import User
+from .role import Role

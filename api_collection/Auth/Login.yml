@@ -1,0 +1,110 @@
+info:
+  name: Login
+  type: http
+  seq: 2
+
+http:
+  method: post
+  url: http://127.0.0.1:8000/api/auth/login
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "organization_id": "60e8b741-b9be-4445-b163-0e0ec886e90f",
+        "email": "admin@backroombuilds.com",
+        "password": "passwor"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: false
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Success
+    request:
+      url: http://127.0.0.1:8000/api/auth/login
+      method: post
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "organization_id": "60e8b741-b9be-4445-b163-0e0ec886e90f",
+            "email": "admin@backroombuilds.com",
+            "password": "password"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: date
+          value: Fri, 29 May 2026 19:56:56 GMT
+        - name: server
+          value: uvicorn
+        - name: content-length
+          value: "674"
+        - name: content-type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "status_code": 200,
+            "message": "Login successful",
+            "data": {
+              "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3OWJmNWM5Ni1kZDQ1LTRiODQtOTFkOS05MjIwMGNhMDQ1MGMiLCJvcmdfaWQiOiI2MGU4Yjc0MS1iOWJlLTQ0NDUtYjE2My0wZTBlYzg4NmU5MGYiLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3ODAwOTE4MTZ9.W-TBWl5Dmg7tPuaFp3RADWrkf4-GQdaeEKcynFYlETI",
+              "refresh_token": "rfr_70d07a33c99b6b6ea96dedd0006c6167374c05ea047b8744410c5493a68230fc",
+              "user": {
+                "id": "79bf5c96-dd45-4b84-91d9-92200ca0450c",
+                "organization_id": "60e8b741-b9be-4445-b163-0e0ec886e90f",
+                "email": "admin@backroombuilds.com",
+                "role": "ADMIN",
+                "is_active": true,
+                "created_at": "2026-05-29T19:51:17.993950Z",
+                "updated_at": "2026-05-29T19:51:17.993950Z"
+              }
+            }
+          }
+  - name: Invalid Credentials
+    request:
+      url: http://127.0.0.1:8000/api/auth/login
+      method: post
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "organization_id": "60e8b741-b9be-4445-b163-0e0ec886e90f",
+            "email": "admin@backroombuilds.com",
+            "password": "passwor"
+          }
+    response:
+      status: 401
+      statusText: Unauthorized
+      headers:
+        - name: date
+          value: Fri, 29 May 2026 19:57:20 GMT
+        - name: server
+          value: uvicorn
+        - name: content-length
+          value: "84"
+        - name: content-type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "status_code": 401,
+            "message": "Invalid email, password, or organization",
+            "data": null
+          }

@@ -1,0 +1,130 @@
+info:
+  name: Delete
+  type: http
+  seq: 4
+
+http:
+  method: delete
+  url: http://127.0.0.1:8000/api/organization/d1fce258-f266-4275-83a7-e8f2f6bb710b
+  headers:
+    - name: Authorization
+      value: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3OWJmNWM5Ni1kZDQ1LTRiODQtOTFkOS05MjIwMGNhMDQ1MGMiLCJvcmdfaWQiOiI2MGU4Yjc0MS1iOWJlLTQ0NDUtYjE2My0wZTBlYzg4NmU5MGYiLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3ODAwOTE5MTB9.yu5nFEM7Fi6H8BEtTiyQdorx7asG4VDrROHSB13FmMw
+  auth: inherit
+
+settings:
+  encodeUrl: false
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Role Not Allowed
+    request:
+      url: http://127.0.0.1:8000/api/organization/a3b5a6c1-d3ef-4b90-bc4a-6f68c3ef9081
+      method: delete
+      headers:
+        - name: Authorization
+          value: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1NmEzMTQyNi05ZjFiLTQ4OGQtODE4Yy1kMjZiNzA2ZmQ3Y2UiLCJvcmdfaWQiOiI2MGU4Yjc0MS1iOWJlLTQ0NDUtYjE2My0wZTBlYzg4NmU5MGYiLCJyb2xlIjoiTUVNQkVSIiwiZXhwIjoxNzgwMDkyMTA0fQ.Dv4K7mZZCQXKLMI2D354PdG0w9-DItCd-1ZPhIOlaWI
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: date
+          value: Fri, 29 May 2026 20:10:15 GMT
+        - name: server
+          value: uvicorn
+        - name: content-length
+          value: "119"
+        - name: content-type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "detail": {
+              "status": 403,
+              "code": "FORBIDDEN",
+              "message": "Role 'MEMBER' does not have permission to access this resource"
+            }
+          }
+  - name: Organization Not Found
+    request:
+      url: http://127.0.0.1:8000/api/organization/a3b5a6c1-d3ef-4b90-bc4a-6f68c3ef9081
+      method: delete
+      headers:
+        - name: Authorization
+          value: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3OWJmNWM5Ni1kZDQ1LTRiODQtOTFkOS05MjIwMGNhMDQ1MGMiLCJvcmdfaWQiOiI2MGU4Yjc0MS1iOWJlLTQ0NDUtYjE2My0wZTBlYzg4NmU5MGYiLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3ODAwOTE5MTB9.yu5nFEM7Fi6H8BEtTiyQdorx7asG4VDrROHSB13FmMw
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: date
+          value: Fri, 29 May 2026 20:10:55 GMT
+        - name: server
+          value: uvicorn
+        - name: content-length
+          value: "66"
+        - name: content-type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "status_code": 404,
+            "message": "Organization not found",
+            "data": null
+          }
+  - name: Invalid Token
+    request:
+      url: http://127.0.0.1:8000/api/organization/a3b5a6c1-d3ef-4b90-bc4a-6f68c3ef9081
+      method: delete
+      headers:
+        - name: Authorization
+          value: Bearer byJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3OWJmNWM5Ni1kZDQ1LTRiODQtOTFkOS05MjIwMGNhMDQ1MGMiLCJvcmdfaWQiOiI2MGU4Yjc0MS1iOWJlLTQ0NDUtYjE2My0wZTBlYzg4NmU5MGYiLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3ODAwOTE5MTB9.yu5nFEM7Fi6H8BEtTiyQdorx7asG4VDrROHSB13FmMw
+    response:
+      status: 401
+      statusText: Unauthorized
+      headers:
+        - name: date
+          value: Fri, 29 May 2026 20:11:18 GMT
+        - name: server
+          value: uvicorn
+        - name: content-length
+          value: "69"
+        - name: content-type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "status": 401,
+            "code": "UNAUTHORIZED",
+            "message": "Invalid access token"
+          }
+  - name: Success
+    request:
+      url: http://127.0.0.1:8000/api/organization/d1fce258-f266-4275-83a7-e8f2f6bb710b
+      method: delete
+      headers:
+        - name: Authorization
+          value: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3OWJmNWM5Ni1kZDQ1LTRiODQtOTFkOS05MjIwMGNhMDQ1MGMiLCJvcmdfaWQiOiI2MGU4Yjc0MS1iOWJlLTQ0NDUtYjE2My0wZTBlYzg4NmU5MGYiLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3ODAwOTE5MTB9.yu5nFEM7Fi6H8BEtTiyQdorx7asG4VDrROHSB13FmMw
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: date
+          value: Fri, 29 May 2026 20:12:00 GMT
+        - name: server
+          value: uvicorn
+        - name: content-length
+          value: "77"
+        - name: content-type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "status_code": 200,
+            "message": "Organization deleted successfully",
+            "data": null
+          }
