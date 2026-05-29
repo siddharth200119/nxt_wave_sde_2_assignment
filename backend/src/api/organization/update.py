@@ -7,16 +7,19 @@ class UpdateOrganizationRequest(BaseModel):
     name: str
 
 async def update_organization_handler(id: UUID, request: UpdateOrganizationRequest):
-    org = update_organization(id, request.name)
-    if org:
-        return APIOutput.success(
-            data=org,
-            message="Organization updated successfully"
+    try:
+        org = update_organization(id, request.name)
+        if org:
+            return APIOutput.success(
+                data=org,
+                message="Organization updated successfully"
+            )
+        return APIOutput.failure(
+            message="Organization not found",
+            status_code=404
         )
-    return APIOutput.failure(
-        message="Organization not found",
-        status_code=404
-    )
+    except Exception as e:
+        return APIOutput.failure(message=str(e), status_code=500)
 
 route = Route(
     function=update_organization_handler,
