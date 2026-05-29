@@ -1,0 +1,23 @@
+from src.models import APIOutput, Route, Organization
+from src.logics import read_organization
+from uuid import UUID
+
+async def read_organization_handler(id: UUID):
+    org = read_organization(id)
+    if org:
+        return APIOutput.success(
+            data=org,
+            message="Organization retrieved successfully"
+        )
+    return APIOutput.failure(
+        message="Organization not found",
+        status_code=404
+    )
+
+route = Route(
+    function=read_organization_handler,
+    path="/{id}",
+    method="GET",
+    summary="Get an organization by ID",
+    description="Returns an organization's details based on its UUID"
+)
