@@ -1,0 +1,63 @@
+set dotenv-load
+
+DATABASE_URL := "$DB_DIALECT://$DB_USER:$DB_PASS@$DB_HOST:$DB_PORT/$DB_NAME"
+
+# ─── Project ──────────────────────────────────────────────────────────
+
+# Initialize the project
+init:
+    bash scripts/init.sh
+
+# ─── Database ─────────────────────────────────────────────────────────
+
+# Create the database if it doesn't exist
+db-create:
+    bash scripts/db-init.sh
+
+# ─── Yoyo Migrations ─────────────────────────────────────────────────
+
+# Initialize migrations folder, yoyo.ini, and database
+migrate-init:
+    bash scripts/db-init.sh
+
+# Create a new migration
+migrate-new name:
+    uv run yoyo new -m "{{name}}"
+
+# Apply all pending migrations
+migrate-apply:
+    uv run yoyo apply -d "{{DATABASE_URL}}"
+
+# Apply a specific migration by ID
+migrate-apply-one id:
+    uv run yoyo apply -d "{{DATABASE_URL}}" {{id}}
+
+# Rollback last migration
+migrate-rollback:
+    uv run yoyo rollback -d "{{DATABASE_URL}}"
+
+# Rollback a specific migration by ID
+migrate-rollback-one id:
+    uv run yoyo rollback -d "{{DATABASE_URL}}" {{id}}
+
+# List migrations
+migrate-list:
+    uv run yoyo list -d "{{DATABASE_URL}}"
+
+# ─── Development ──────────────────────────────────────────────────────
+
+# Run the dev server
+dev:
+    uv run main.py
+
+# ─── Docker ───────────────────────────────────────────────────────────
+
+# Build docker image
+docker-build:
+    docker build -t app .
+
+# Run docker container
+docker-run:
+    docker run -p 8000:8000 --env-file .env app
+
+# ─── Scaffolding ──────────────────────────────────────────────────────
