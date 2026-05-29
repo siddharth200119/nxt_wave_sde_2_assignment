@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from src.models import APIOutput, Route, Organization
+from src.models import APIOutput, Route, Role
 from src.logics import update_organization
 from uuid import UUID
 
@@ -25,6 +25,7 @@ route = Route(
     function=update_organization_handler,
     path="/{id}",
     method="PATCH",
+    required_roles=[Role.ADMIN],
     summary="Update an organization",
     description="Updates an organization's name by its UUID"
 )

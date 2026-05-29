@@ -1,4 +1,4 @@
-from src.models import APIOutput, Route
+from src.models import APIOutput, Route, Role
 from src.logics import delete_organization
 from uuid import UUID
 
@@ -20,6 +20,7 @@ route = Route(
     function=delete_organization_handler,
     path="/{id}",
     method="DELETE",
+    required_roles=[Role.ADMIN],
     summary="Delete an organization",
     description="Deletes an organization by its UUID"
 )

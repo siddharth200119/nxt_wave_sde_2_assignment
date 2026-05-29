@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from src.models import APIOutput, Route, Organization
+from src.models import APIOutput, Route, Role
 from src.logics import create_organization
 
 class CreateOrganizationRequest(BaseModel):
@@ -20,6 +20,7 @@ route = Route(
     function=create_organization_handler,
     path='/',
     method="POST",
+    required_roles=[Role.ADMIN],
     summary="Create a new organization",
     description="Creates a new organization with the provided name"
 )

@@ -1,0 +1,104 @@
+info:
+  name: Refresh
+  type: http
+  seq: 3
+
+http:
+  method: post
+  url: http://127.0.0.1:8000/api/auth/refresh
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "refresh_token": "rfr_70d07a33c99b6b6ea96dedd0006c6167374c05ea047b8744410c5493a68230fa"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: false
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Success
+    request:
+      url: http://127.0.0.1:8000/api/auth/refresh
+      method: post
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "refresh_token": "rfr_70d07a33c99b6b6ea96dedd0006c6167374c05ea047b8744410c5493a68230fc"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: date
+          value: Fri, 29 May 2026 19:58:30 GMT
+        - name: server
+          value: uvicorn
+        - name: content-length
+          value: "686"
+        - name: content-type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "status_code": 200,
+            "message": "Token refreshed successfully",
+            "data": {
+              "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3OWJmNWM5Ni1kZDQ1LTRiODQtOTFkOS05MjIwMGNhMDQ1MGMiLCJvcmdfaWQiOiI2MGU4Yjc0MS1iOWJlLTQ0NDUtYjE2My0wZTBlYzg4NmU5MGYiLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3ODAwOTE5MTB9.yu5nFEM7Fi6H8BEtTiyQdorx7asG4VDrROHSB13FmMw",
+              "refresh_token": "rfr_2cf219f6b3abbca93ca40d86d872fb970abc21e192b0d15042283a252c4592f0",
+              "user": {
+                "id": "79bf5c96-dd45-4b84-91d9-92200ca0450c",
+                "organization_id": "60e8b741-b9be-4445-b163-0e0ec886e90f",
+                "email": "admin@backroombuilds.com",
+                "role": "ADMIN",
+                "is_active": true,
+                "created_at": "2026-05-29T19:51:17.993950Z",
+                "updated_at": "2026-05-29T19:51:17.993950Z"
+              }
+            }
+          }
+  - name: Invalid Token
+    request:
+      url: http://127.0.0.1:8000/api/auth/refresh
+      method: post
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "refresh_token": "rfr_70d07a33c99b6b6ea96dedd0006c6167374c05ea047b8744410c5493a68230fa"
+          }
+    response:
+      status: 401
+      statusText: Unauthorized
+      headers:
+        - name: date
+          value: Fri, 29 May 2026 19:58:54 GMT
+        - name: server
+          value: uvicorn
+        - name: content-length
+          value: "76"
+        - name: content-type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "status_code": 401,
+            "message": "Invalid or expired refresh token",
+            "data": null
+          }

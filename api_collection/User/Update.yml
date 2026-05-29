@@ -1,0 +1,183 @@
+info:
+  name: Update
+  type: http
+  seq: 3
+
+http:
+  method: patch
+  url: http://127.0.0.1:8000/api/user/61148cfc-55bd-4fa6-8583-88b56f16d0de
+  headers:
+    - name: Authorization
+      value: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3OWJmNWM5Ni1kZDQ1LTRiODQtOTFkOS05MjIwMGNhMDQ1MGMiLCJvcmdfaWQiOiI2MGU4Yjc0MS1iOWJlLTQ0NDUtYjE2My0wZTBlYzg4NmU5MGYiLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3ODAwOTE5MTB9.yu5nFEM7Fi6H8BEtTiyQdorx7asG4VDrROHSB13FmMw
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "email": "updated.member@example.com",
+        "is_active": true
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: false
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Success
+    request:
+      url: http://127.0.0.1:8000/api/user/61148cfc-55bd-4fa6-8583-88b56f16d0dd
+      method: patch
+      headers:
+        - name: Authorization
+          value: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3OWJmNWM5Ni1kZDQ1LTRiODQtOTFkOS05MjIwMGNhMDQ1MGMiLCJvcmdfaWQiOiI2MGU4Yjc0MS1iOWJlLTQ0NDUtYjE2My0wZTBlYzg4NmU5MGYiLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3ODAwOTE5MTB9.yu5nFEM7Fi6H8BEtTiyQdorx7asG4VDrROHSB13FmMw
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "email": "updated.member@example.com",
+            "is_active": true
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: date
+          value: Fri, 29 May 2026 20:30:18 GMT
+        - name: server
+          value: uvicorn
+        - name: content-length
+          value: "324"
+        - name: content-type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "status_code": 200,
+            "message": "User updated successfully",
+            "data": {
+              "id": "61148cfc-55bd-4fa6-8583-88b56f16d0dd",
+              "organization_id": "60e8b741-b9be-4445-b163-0e0ec886e90f",
+              "email": "updated.member@example.com",
+              "role": "MANAGER",
+              "is_active": true,
+              "created_at": "2026-05-29T20:21:50.816131Z",
+              "updated_at": "2026-05-29T20:30:19.263122Z"
+            }
+          }
+  - name: Invalid Role
+    request:
+      url: http://127.0.0.1:8000/api/user/61148cfc-55bd-4fa6-8583-88b56f16d0dd
+      method: patch
+      headers:
+        - name: Authorization
+          value: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTE0OGNmYy01NWJkLTRmYTYtODU4My04OGI1NmYxNmQwZGQiLCJvcmdfaWQiOiI2MGU4Yjc0MS1iOWJlLTQ0NDUtYjE2My0wZTBlYzg4NmU5MGYiLCJyb2xlIjoiTUFOQUdFUiIsImV4cCI6MTc4MDA5MzM2Mn0.xSPpsdkgqf0IDWtEIrxsO4OZj08xBRmHBkLJtlDXwgA
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "email": "updated.member@example.com",
+            "is_active": true
+          }
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: date
+          value: Fri, 29 May 2026 20:30:52 GMT
+        - name: server
+          value: uvicorn
+        - name: content-length
+          value: "120"
+        - name: content-type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "detail": {
+              "status": 403,
+              "code": "FORBIDDEN",
+              "message": "Role 'MANAGER' does not have permission to access this resource"
+            }
+          }
+  - name: Invalid Token
+    request:
+      url: http://127.0.0.1:8000/api/user/61148cfc-55bd-4fa6-8583-88b56f16d0dd
+      method: patch
+      headers:
+        - name: Authorization
+          value: Bearer eryJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTE0OGNmYy01NWJkLTRmYTYtODU4My04OGI1NmYxNmQwZGQiLCJvcmdfaWQiOiI2MGU4Yjc0MS1iOWJlLTQ0NDUtYjE2My0wZTBlYzg4NmU5MGYiLCJyb2xlIjoiTUFOQUdFUiIsImV4cCI6MTc4MDA5MzM2Mn0.xSPpsdkgqf0IDWtEIrxsO4OZj08xBRmHBkLJtlDXwgA
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "email": "updated.member@example.com",
+            "is_active": true
+          }
+    response:
+      status: 401
+      statusText: Unauthorized
+      headers:
+        - name: date
+          value: Fri, 29 May 2026 20:31:23 GMT
+        - name: server
+          value: uvicorn
+        - name: content-length
+          value: "69"
+        - name: content-type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "status": 401,
+            "code": "UNAUTHORIZED",
+            "message": "Invalid access token"
+          }
+  - name: User Not Found
+    request:
+      url: http://127.0.0.1:8000/api/user/61148cfc-55bd-4fa6-8583-88b56f16d0de
+      method: patch
+      headers:
+        - name: Authorization
+          value: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3OWJmNWM5Ni1kZDQ1LTRiODQtOTFkOS05MjIwMGNhMDQ1MGMiLCJvcmdfaWQiOiI2MGU4Yjc0MS1iOWJlLTQ0NDUtYjE2My0wZTBlYzg4NmU5MGYiLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3ODAwOTE5MTB9.yu5nFEM7Fi6H8BEtTiyQdorx7asG4VDrROHSB13FmMw
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "email": "updated.member@example.com",
+            "is_active": true
+          }
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: date
+          value: Fri, 29 May 2026 20:32:06 GMT
+        - name: server
+          value: uvicorn
+        - name: content-length
+          value: "58"
+        - name: content-type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "status_code": 404,
+            "message": "User not found",
+            "data": null
+          }

@@ -1,16 +1,17 @@
-from pydantic import BaseModel
-from src.models import APIOutput, Route, Organization
+from src.models import APIOutput, Route, Role
 from src.logics import list_organizations
-from typing import List, Optional
+from typing import Optional
 
-class ListOrganizationsRequest(BaseModel):
-    # Optional filtering can be added here later
-    limit: Optional[int] = None
-    offset: Optional[int] = None
-
-async def list_organizations_handler(request: ListOrganizationsRequest):
+async def list_organizations_handler(limit: Optional[int] = None, offset: Optional[int] = None):
     try:
         orgs = list_organizations()
+        
+        # Apply standard pagination limit/offset slicing in-memory
+        if limit is not None or offset is not None:
+            start = offset or 0
+            end = start + limit if limit is not None else len(orgs)
+            orgs = orgs[start:end]
+            
         return APIOutput.success(
             data=orgs,
             message="Organizations retrieved successfully"
@@ -20,7 +21,8 @@ async def list_organizations_handler(request: ListOrganizationsRequest):
 
 route = Route(
     function=list_organizations_handler,
-    method="POST",
+    method="GET",
+    required_roles=[Role.ADMIN],
     summary="List all organizations",
-    description="Returns a list of all organizations. Requested as POST."
+    description="Returns a list of all organizations. Requested as GET."
 )

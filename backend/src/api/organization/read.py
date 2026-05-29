@@ -1,4 +1,4 @@
-from src.models import APIOutput, Route, Organization
+from src.models import APIOutput, Route, Role
 from src.logics import read_organization
 from uuid import UUID
 
@@ -21,6 +21,7 @@ route = Route(
     function=read_organization_handler,
     path="/{id}",
     method="GET",
+    required_roles=[Role.ADMIN],
     summary="Get an organization by ID",
     description="Returns an organization's details based on its UUID"
 )
