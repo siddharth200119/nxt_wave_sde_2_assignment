@@ -12,3 +12,7 @@ from .user.list import list_users
 from .auth.register import register_user
 from .auth.login import login_user
 from .auth.refresh import rotate_refresh_token
+from .task.create import create_task
+from .task.read import read_task
+from .task.update import update_task
+from .task.delete import delete_task

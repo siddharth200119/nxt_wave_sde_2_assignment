@@ -5,11 +5,58 @@ import os
 from src.events import startup, shutdown
 from contextlib import asynccontextmanager
 from dotenv import load_dotenv
+from fastapi.exceptions import RequestValidationError
+from src.models import APIOutput
+from src.middlewares import middlewares_to_apply
+from fastapi.middleware.cors import CORSMiddleware
 
 load_dotenv()
 
 app = FastAPI()
 
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request, exc: RequestValidationError):
+    # Formulate a clear, readable validation message and build JSON-safe error structures
+    error_details = []
+    sanitized_errors = []
+    
+    for err in exc.errors():
+        loc_tuple = err.get("loc", [])
+        loc = ".".join(str(x) for x in loc_tuple)
+        msg = err.get("msg", "Invalid value")
+        
+        # Remove generic "Value error, " prefix from custom validator errors
+        if msg.startswith("Value error, "):
+            msg = msg[len("Value error, "):]
+            
+        error_details.append(f"{loc}: {msg}")
+        
+        # Build serializable version of this error, scrubbing non-serializable python exception objects
+        sanitized_err = {
+            "type": err.get("type"),
+            "loc": loc_tuple,
+            "msg": msg,
+            "input": err.get("input"),
+        }
+        
+        if "ctx" in err:
+            ctx = err["ctx"]
+            sanitized_ctx = {}
+            for k, v in ctx.items():
+                if isinstance(v, Exception):
+                    sanitized_ctx[k] = str(v)
+                else:
+                    sanitized_ctx[k] = v
+            sanitized_err["ctx"] = sanitized_ctx
+            
+        sanitized_errors.append(sanitized_err)
+    
+    error_msg = "; ".join(error_details)
+    return APIOutput.failure(
+        message=f"Validation Error: {error_msg}",
+        status_code=400,
+        data={"detail": sanitized_errors}
+    )
 
 
 @asynccontextmanager
@@ -20,16 +67,8 @@ async def lifespan(app: FastAPI):
     finally:
         await shutdown(app)
 
-
-from src.middlewares import middlewares_to_apply
-
-# Add middlewares in reverse order they were discovered
-# FastAPI executes the LAST added middleware FIRST for incoming requests.
 for middleware in reversed(middlewares_to_apply):
     app.add_middleware(middleware)
-
-# Add CORS middleware LAST so it executes FIRST to catch preflight
-from fastapi.middleware.cors import CORSMiddleware
 
 app.add_middleware(
     CORSMiddleware,

@@ -1,0 +1,232 @@
+info:
+  name: Create
+  type: http
+  seq: 1
+
+http:
+  method: post
+  url: http://localhost:8000/api/task
+  headers:
+    - name: Authorization
+      value: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwZjUzY2I5NS1mNmY3LTRkZjQtOTQ4ZC0xNDMyZmE5MDkwNDEiLCJvcmdfaWQiOiI2MGU4Yjc0MS1iOWJlLTQ0NDUtYjE2My0wZTBlYzg4NmU5MGYiLCJyb2xlIjoiTUFOQUdFUiIsImV4cCI6MTc4MDEzNTU2OH0.GgnM0Hn1BBNFNpYMYmIo_lJviL5PJbqBip8aAmDbqVQ
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "title": "Build Team Task Tracker API",
+        "description": "Implement authentication, RBAC, task CRUD, and containerization.",
+        "priority": "HIGH",
+        "assignee_id": "56a31426-9f1b-488d-818c-d26b706fd7ce",
+        "due_date": "2026-04-30T01:00:00Z"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: false
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Invalid Role
+    request:
+      url: http://localhost:8000/api/task
+      method: post
+      headers:
+        - name: Authorization
+          value: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1NmEzMTQyNi05ZjFiLTQ4OGQtODE4Yy1kMjZiNzA2ZmQ3Y2UiLCJvcmdfaWQiOiI2MGU4Yjc0MS1iOWJlLTQ0NDUtYjE2My0wZTBlYzg4NmU5MGYiLCJyb2xlIjoiTUVNQkVSIiwiZXhwIjoxNzgwMTM1NTI0fQ.cP6MaDzNHi4BXZlCl6PudAV4FTtk6NoJDT41SNdG5GQ
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "title": "Build Team Task Tracker API",
+            "description": "Implement authentication, RBAC, task CRUD, and containerization.",
+            "priority": "HIGH",
+            "assignee_id": "40446806-0107-6201-9310-52637738f610",
+            "due_date": "2026-06-30T12:00:00Z"
+          }
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: date
+          value: Sat, 30 May 2026 08:05:37 GMT
+        - name: server
+          value: uvicorn
+        - name: content-length
+          value: "119"
+        - name: content-type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "detail": {
+              "status": 403,
+              "code": "FORBIDDEN",
+              "message": "Role 'MEMBER' does not have permission to access this resource"
+            }
+          }
+  - name: Assignee Organization Mismatch
+    request:
+      url: http://localhost:8000/api/task
+      method: post
+      headers:
+        - name: Authorization
+          value: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwZjUzY2I5NS1mNmY3LTRkZjQtOTQ4ZC0xNDMyZmE5MDkwNDEiLCJvcmdfaWQiOiI2MGU4Yjc0MS1iOWJlLTQ0NDUtYjE2My0wZTBlYzg4NmU5MGYiLCJyb2xlIjoiTUFOQUdFUiIsImV4cCI6MTc4MDEzNTU2OH0.GgnM0Hn1BBNFNpYMYmIo_lJviL5PJbqBip8aAmDbqVQ
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "title": "Build Team Task Tracker API",
+            "description": "Implement authentication, RBAC, task CRUD, and containerization.",
+            "priority": "HIGH",
+            "assignee_id": "40446806-0107-6201-9310-52637738f610",
+            "due_date": "2026-06-30T12:00:00Z"
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: date
+          value: Sat, 30 May 2026 08:06:20 GMT
+        - name: server
+          value: uvicorn
+        - name: content-length
+          value: "89"
+        - name: content-type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "status_code": 400,
+            "message": "Assignee must belong to the same organization",
+            "data": null
+          }
+  - name: Success
+    request:
+      url: http://localhost:8000/api/task
+      method: post
+      headers:
+        - name: Authorization
+          value: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwZjUzY2I5NS1mNmY3LTRkZjQtOTQ4ZC0xNDMyZmE5MDkwNDEiLCJvcmdfaWQiOiI2MGU4Yjc0MS1iOWJlLTQ0NDUtYjE2My0wZTBlYzg4NmU5MGYiLCJyb2xlIjoiTUFOQUdFUiIsImV4cCI6MTc4MDEzNTU2OH0.GgnM0Hn1BBNFNpYMYmIo_lJviL5PJbqBip8aAmDbqVQ
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "title": "Build Team Task Tracker API",
+            "description": "Implement authentication, RBAC, task CRUD, and containerization.",
+            "priority": "HIGH",
+            "assignee_id": "56a31426-9f1b-488d-818c-d26b706fd7ce",
+            "due_date": "2026-06-30T12:00:00Z"
+          }
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: date
+          value: Sat, 30 May 2026 08:07:27 GMT
+        - name: server
+          value: uvicorn
+        - name: content-length
+          value: "1026"
+        - name: content-type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "status_code": 201,
+            "message": "Task created successfully",
+            "data": {
+              "id": "ddd79aae-4058-4537-9525-c64799009b59",
+              "organization_id": "60e8b741-b9be-4445-b163-0e0ec886e90f",
+              "title": "Build Team Task Tracker API",
+              "description": "Implement authentication, RBAC, task CRUD, and containerization.",
+              "priority": "HIGH",
+              "status": "TODO",
+              "assignee_id": "56a31426-9f1b-488d-818c-d26b706fd7ce",
+              "due_date": "2026-06-30T12:00:00Z",
+              "created_at": "2026-05-30T08:07:27.704000Z",
+              "updated_at": "2026-05-30T08:07:27.704000Z",
+              "organization": {
+                "id": "60e8b741-b9be-4445-b163-0e0ec886e90f",
+                "name": "Acme Corporation Inc.",
+                "created_at": "2026-05-29T18:17:32.364339Z",
+                "updated_at": "2026-05-29T20:13:57.790436Z"
+              },
+              "assigned_to": {
+                "id": "56a31426-9f1b-488d-818c-d26b706fd7ce",
+                "organization_id": "60e8b741-b9be-4445-b163-0e0ec886e90f",
+                "email": "member@backroombuilds.com",
+                "password_hash": "1c6ee4ccc3f22f3b2c2fcbcddc641146c224b21ea606da7c10b4c6f802df5e9b",
+                "role": "MEMBER",
+                "is_active": true,
+                "created_at": "2026-05-29T20:01:44.872592Z",
+                "updated_at": "2026-05-29T20:01:44.872592Z"
+              }
+            }
+          }
+  - name: Invalid Request
+    request:
+      url: http://localhost:8000/api/task
+      method: post
+      headers:
+        - name: Authorization
+          value: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwZjUzY2I5NS1mNmY3LTRkZjQtOTQ4ZC0xNDMyZmE5MDkwNDEiLCJvcmdfaWQiOiI2MGU4Yjc0MS1iOWJlLTQ0NDUtYjE2My0wZTBlYzg4NmU5MGYiLCJyb2xlIjoiTUFOQUdFUiIsImV4cCI6MTc4MDEzNTU2OH0.GgnM0Hn1BBNFNpYMYmIo_lJviL5PJbqBip8aAmDbqVQ
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "title": "Build Team Task Tracker API",
+            "description": "Implement authentication, RBAC, task CRUD, and containerization.",
+            "priority": "HIGH",
+            "assignee_id": "56a31426-9f1b-488d-818c-d26b706fd7ce",
+            "due_date": "2026-04-30T01:00:00Z"
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: date
+          value: Sat, 30 May 2026 08:21:00 GMT
+        - name: server
+          value: uvicorn
+        - name: content-length
+          value: "283"
+        - name: content-type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "status_code": 400,
+            "message": "Validation Error: body.due_date: due_date must be in the future",
+            "data": {
+              "detail": [
+                {
+                  "type": "value_error",
+                  "loc": [
+                    "body",
+                    "due_date"
+                  ],
+                  "msg": "due_date must be in the future",
+                  "input": "2026-04-30T01:00:00Z",
+                  "ctx": {
+                    "error": "due_date must be in the future"
+                  }
+                }
+              ]
+            }
+          }

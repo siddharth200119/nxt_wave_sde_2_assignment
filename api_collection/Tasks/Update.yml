@@ -1,0 +1,283 @@
+info:
+  name: Update
+  type: http
+  seq: 2
+
+http:
+  method: patch
+  url: http://localhost:8000/api/task/ddd79aae-4058-4537-9525-c64799009b59
+  headers:
+    - name: Authorization
+      value: Bearer enJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyOTQ3ZjU2Yi00ZWViLTRmNzQtYTQyOS1kZjMwNmRjYzQ0YTQiLCJvcmdfaWQiOiI2MGU4Yjc0MS1iOWJlLTQ0NDUtYjE2My0wZTBlYzg4NmU5MGYiLCJyb2xlIjoiTUVNQkVSIiwiZXhwIjoxNzgwMTM3NjQ1fQ.DnnPesMvkGkv05IDvxSk1zP9JmLiuiCp0l_0M8bMKiU
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "status": "IN_PROGRESS",
+        "priority": "HIGH",
+        "due_date": "2026-06-15T12:00:00Z"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: false
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Update By Assigned Member
+    request:
+      url: http://localhost:8000/api/task/ddd79aae-4058-4537-9525-c64799009b59
+      method: patch
+      headers:
+        - name: Authorization
+          value: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1NmEzMTQyNi05ZjFiLTQ4OGQtODE4Yy1kMjZiNzA2ZmQ3Y2UiLCJvcmdfaWQiOiI2MGU4Yjc0MS1iOWJlLTQ0NDUtYjE2My0wZTBlYzg4NmU5MGYiLCJyb2xlIjoiTUVNQkVSIiwiZXhwIjoxNzgwMTM1NjI5fQ.V6hpajtlKzQ7TRZPHit6pX8GsqrFJ2V93JtvQf6XbqU
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "status": "IN_PROGRESS"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: date
+          value: Sat, 30 May 2026 08:36:22 GMT
+        - name: server
+          value: uvicorn
+        - name: content-length
+          value: "1035"
+        - name: content-type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "status_code": 200,
+            "message": "Task updated successfully",
+            "data": {
+              "id": "ddd79aae-4058-4537-9525-c64799009b59",
+              "organization_id": "60e8b741-b9be-4445-b163-0e0ec886e90f",
+              "title": "Updated High Priority Project Task",
+              "description": "Refactoring tasks to use high-performance single-query joins.",
+              "priority": "HIGH",
+              "status": "IN_REVIEW",
+              "assignee_id": "56a31426-9f1b-488d-818c-d26b706fd7ce",
+              "due_date": "2026-06-15T12:00:00Z",
+              "created_at": "2026-05-30T08:07:27.704000Z",
+              "updated_at": "2026-05-30T08:36:22.867274Z",
+              "organization": {
+                "id": "60e8b741-b9be-4445-b163-0e0ec886e90f",
+                "name": "Acme Corporation Inc.",
+                "created_at": "2026-05-29T18:17:32.364339Z",
+                "updated_at": "2026-05-29T20:13:57.790436Z"
+              },
+              "assigned_to": {
+                "id": "56a31426-9f1b-488d-818c-d26b706fd7ce",
+                "organization_id": "60e8b741-b9be-4445-b163-0e0ec886e90f",
+                "email": "member@backroombuilds.com",
+                "password_hash": "1c6ee4ccc3f22f3b2c2fcbcddc641146c224b21ea606da7c10b4c6f802df5e9b",
+                "role": "MEMBER",
+                "is_active": true,
+                "created_at": "2026-05-29T20:01:44.872592Z",
+                "updated_at": "2026-05-29T20:01:44.872592Z"
+              }
+            }
+          }
+  - name: Update By Admin/Manager
+    request:
+      url: http://localhost:8000/api/task/ddd79aae-4058-4537-9525-c64799009b59
+      method: patch
+      headers:
+        - name: Authorization
+          value: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwZjUzY2I5NS1mNmY3LTRkZjQtOTQ4ZC0xNDMyZmE5MDkwNDEiLCJvcmdfaWQiOiI2MGU4Yjc0MS1iOWJlLTQ0NDUtYjE2My0wZTBlYzg4NmU5MGYiLCJyb2xlIjoiTUFOQUdFUiIsImV4cCI6MTc4MDEzNTU2OH0.GgnM0Hn1BBNFNpYMYmIo_lJviL5PJbqBip8aAmDbqVQ
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "title": "Updated High Priority Project Task",
+            "description": "Refactoring tasks to use high-performance single-query joins.",
+            "status": "IN_PROGRESS",
+            "priority": "HIGH",
+            "due_date": "2026-06-15T12:00:00Z"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: date
+          value: Sat, 30 May 2026 08:38:04 GMT
+        - name: server
+          value: uvicorn
+        - name: content-length
+          value: "1037"
+        - name: content-type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "status_code": 200,
+            "message": "Task updated successfully",
+            "data": {
+              "id": "ddd79aae-4058-4537-9525-c64799009b59",
+              "organization_id": "60e8b741-b9be-4445-b163-0e0ec886e90f",
+              "title": "Updated High Priority Project Task",
+              "description": "Refactoring tasks to use high-performance single-query joins.",
+              "priority": "HIGH",
+              "status": "IN_PROGRESS",
+              "assignee_id": "56a31426-9f1b-488d-818c-d26b706fd7ce",
+              "due_date": "2026-06-15T12:00:00Z",
+              "created_at": "2026-05-30T08:07:27.704000Z",
+              "updated_at": "2026-05-30T08:38:05.219607Z",
+              "organization": {
+                "id": "60e8b741-b9be-4445-b163-0e0ec886e90f",
+                "name": "Acme Corporation Inc.",
+                "created_at": "2026-05-29T18:17:32.364339Z",
+                "updated_at": "2026-05-29T20:13:57.790436Z"
+              },
+              "assigned_to": {
+                "id": "56a31426-9f1b-488d-818c-d26b706fd7ce",
+                "organization_id": "60e8b741-b9be-4445-b163-0e0ec886e90f",
+                "email": "member@backroombuilds.com",
+                "password_hash": "1c6ee4ccc3f22f3b2c2fcbcddc641146c224b21ea606da7c10b4c6f802df5e9b",
+                "role": "MEMBER",
+                "is_active": true,
+                "created_at": "2026-05-29T20:01:44.872592Z",
+                "updated_at": "2026-05-29T20:01:44.872592Z"
+              }
+            }
+          }
+  - name: Members are only allowed to update status
+    request:
+      url: http://localhost:8000/api/task/ddd79aae-4058-4537-9525-c64799009b59
+      method: patch
+      headers:
+        - name: Authorization
+          value: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1NmEzMTQyNi05ZjFiLTQ4OGQtODE4Yy1kMjZiNzA2ZmQ3Y2UiLCJvcmdfaWQiOiI2MGU4Yjc0MS1iOWJlLTQ0NDUtYjE2My0wZTBlYzg4NmU5MGYiLCJyb2xlIjoiTUVNQkVSIiwiZXhwIjoxNzgwMTM1NjI5fQ.V6hpajtlKzQ7TRZPHit6pX8GsqrFJ2V93JtvQf6XbqU
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "title": "Updated High Priority Project Task",
+            "description": "Refactoring tasks to use high-performance single-query joins.",
+            "status": "IN_PROGRESS",
+            "priority": "HIGH",
+            "due_date": "2026-06-15T12:00:00Z"
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: date
+          value: Sat, 30 May 2026 08:39:38 GMT
+        - name: server
+          value: uvicorn
+        - name: content-length
+          value: "160"
+        - name: content-type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "status_code": 400,
+            "message": "Members are only permitted to update the 'status' field. Invalid fields sent: title, description, priority, due_date",
+            "data": null
+          }
+  - name: Update By Unassigned member
+    request:
+      url: http://localhost:8000/api/task/ddd79aae-4058-4537-9525-c64799009b59
+      method: patch
+      headers:
+        - name: Authorization
+          value: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyOTQ3ZjU2Yi00ZWViLTRmNzQtYTQyOS1kZjMwNmRjYzQ0YTQiLCJvcmdfaWQiOiI2MGU4Yjc0MS1iOWJlLTQ0NDUtYjE2My0wZTBlYzg4NmU5MGYiLCJyb2xlIjoiTUVNQkVSIiwiZXhwIjoxNzgwMTM3NjQ1fQ.DnnPesMvkGkv05IDvxSk1zP9JmLiuiCp0l_0M8bMKiU
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "status": "IN_PROGRESS",
+            "priority": "HIGH",
+            "due_date": "2026-06-15T12:00:00Z"
+          }
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: date
+          value: Sat, 30 May 2026 08:42:59 GMT
+        - name: server
+          value: uvicorn
+        - name: content-length
+          value: "58"
+        - name: content-type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "status_code": 404,
+            "message": "Task not found",
+            "data": null
+          }
+  - name: Invalid Token
+    request:
+      url: http://localhost:8000/api/task/ddd79aae-4058-4537-9525-c64799009b59
+      method: patch
+      headers:
+        - name: Authorization
+          value: Bearer enJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyOTQ3ZjU2Yi00ZWViLTRmNzQtYTQyOS1kZjMwNmRjYzQ0YTQiLCJvcmdfaWQiOiI2MGU4Yjc0MS1iOWJlLTQ0NDUtYjE2My0wZTBlYzg4NmU5MGYiLCJyb2xlIjoiTUVNQkVSIiwiZXhwIjoxNzgwMTM3NjQ1fQ.DnnPesMvkGkv05IDvxSk1zP9JmLiuiCp0l_0M8bMKiU
+        - name: Content-Type
+          value: application/json
+        - name: Accept
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "status": "IN_PROGRESS",
+            "priority": "HIGH",
+            "due_date": "2026-06-15T12:00:00Z"
+          }
+    response:
+      status: 401
+      statusText: Unauthorized
+      headers:
+        - name: date
+          value: Sat, 30 May 2026 08:43:39 GMT
+        - name: server
+          value: uvicorn
+        - name: content-length
+          value: "69"
+        - name: content-type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "status": 401,
+            "code": "UNAUTHORIZED",
+            "message": "Invalid access token"
+          }
