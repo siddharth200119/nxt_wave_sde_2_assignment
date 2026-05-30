@@ -19,7 +19,8 @@ class AuthenticationMiddleware(BaseHTTPMiddleware):
             "/api/health",
             "/docs",
             "/redoc",
-            "/openapi.json"
+            "/openapi.json",
+            "/api/organization/list"
         }
         
         # Also allow preflight (OPTIONS) requests

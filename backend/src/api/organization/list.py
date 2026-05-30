@@ -22,7 +22,7 @@ async def list_organizations_handler(limit: Optional[int] = None, offset: Option
 route = Route(
     function=list_organizations_handler,
     method="GET",
-    required_roles=[Role.ADMIN],
+    required_roles=[],
     summary="List all organizations",
     description="Returns a list of all organizations. Requested as GET."
 )
