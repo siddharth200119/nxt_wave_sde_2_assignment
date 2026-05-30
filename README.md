@@ -1,6 +1,6 @@
 # Team Task Tracker API
 
-Find the live demo at https://nxt_wave_sde_2_assignment.siddharthramnani.me
+Find the live demo at https://nxt-wave-sde-2-assignment.siddharthramnani.me
 
 A production-grade, highly scalable, and fully containerized REST API with a companion interactive React frontend, built for team-based task tracking. Featuring JWT-based authentication (with secure refresh token rotation), a strict middleware-enforced **Role-Based Access Control (RBAC)** model, high-performance database indexing, and real-time **Redis caching with an event-driven tenant-isolated invalidation strategy**.
 
