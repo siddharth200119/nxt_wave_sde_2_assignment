@@ -31,6 +31,17 @@ services:
       - postgres
       - redis
 
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        - VITE_API_BASE_URL=${VITE_API_BASE_URL}
+    container_name: frontend
+    restart: always
+    depends_on:
+      - backend
+
   proxy:
     image: nginx:alpine
     container_name: proxy
@@ -43,6 +54,7 @@ services:
       - ./api_collection:/var/www/api_collection:ro
     depends_on:
       - backend
+      - frontend
 
 volumes:
   postgres_data:
