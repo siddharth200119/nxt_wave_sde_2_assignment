@@ -37,7 +37,11 @@ fi
 
 # Create database if it doesn't exist
 if [ "$SKIP_DB" = false ]; then
-    uv run python -c "
+    PYTHON_CMD="python"
+    if command -v uv &> /dev/null; then
+        PYTHON_CMD="uv run python"
+    fi
+    $PYTHON_CMD -c "
 import psycopg2
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 import os, sys

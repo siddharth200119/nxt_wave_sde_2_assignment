@@ -36,5 +36,5 @@ COPY . .
 # Expose the default FastAPI port
 EXPOSE 3030
 
-# Run the FastAPI server using Uvicorn
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "3030"]
+# Run migrations and start the FastAPI server via the entrypoint script
+CMD ["bash", "scripts/entrypoint.sh"]

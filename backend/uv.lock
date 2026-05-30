@@ -144,13 +144,13 @@ dependencies = [
     { name = "redis" },
     { name = "sse-starlette" },
     { name = "uvicorn" },
+    { name = "yoyo-migrations" },
 ]
 
 [package.dev-dependencies]
 dev = [
     { name = "pytest" },
     { name = "pytest-asyncio" },
-    { name = "yoyo-migrations" },
 ]
 
 [package.metadata]
@@ -164,13 +164,13 @@ requires-dist = [
     { name = "redis", specifier = ">=8.0.0" },
     { name = "sse-starlette", specifier = ">=3.4.4" },
     { name = "uvicorn", specifier = ">=0.48.0" },
+    { name = "yoyo-migrations", specifier = ">=9.0.0" },
 ]
 
 [package.metadata.requires-dev]
 dev = [
     { name = "pytest", specifier = ">=9.0.3" },
     { name = "pytest-asyncio", specifier = ">=1.4.0" },
-    { name = "yoyo-migrations", specifier = ">=9.0.0" },
 ]
 
 [[package]]

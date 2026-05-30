@@ -12,13 +12,13 @@ dependencies = [
     "redis>=8.0.0",
     "sse-starlette>=3.4.4",
     "uvicorn>=0.48.0",
+    "yoyo-migrations>=9.0.0",
 ]
 
 [dependency-groups]
 dev = [
     "pytest>=9.0.3",
     "pytest-asyncio>=1.4.0",
-    "yoyo-migrations>=9.0.0",
 ]
 
 [tool.pytest.ini_options]
