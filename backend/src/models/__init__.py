@@ -4,3 +4,6 @@ from .route import Route
 from .organization import Organization
 from .user import User
 from .role import Role
+from .task import Task
+from .task_priority import TaskPriority
+from .task_status import TaskStatus
