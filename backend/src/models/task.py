@@ -25,3 +25,12 @@ class Task(BaseModel):
     # Hydrated models (relations)
     organization: Optional[Organization] = None
     assigned_to: Optional[User] = None
+
+    def safe_json(self) -> dict:
+        """
+        Returns the task details as a JSON-serializable dict, sanitizing nested user objects of password hashes.
+        """
+        data = self.model_dump(mode="json")
+        if data.get("assigned_to"):
+            data["assigned_to"].pop("password_hash", None)
+        return data

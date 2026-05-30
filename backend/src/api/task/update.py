@@ -6,6 +6,7 @@ from uuid import UUID
 from datetime import datetime, timezone
 from typing import Optional
 from src.logics.task.read import read_task
+from src.logics.task.caching import invalidate_task_cache
 
 
 class UpdateTaskRequest(BaseModel):
@@ -73,6 +74,9 @@ async def update_task_handler(request: Request, id: UUID, body: UpdateTaskReques
         )
         
         if task:
+            # Invalidate task list caches for this organization
+            await invalidate_task_cache(organization_id=user.organization_id)
+
             return APIOutput.success(
                 data=task.model_dump(mode="json"),
                 message="Task updated successfully"

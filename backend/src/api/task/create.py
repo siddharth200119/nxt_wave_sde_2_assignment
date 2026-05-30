@@ -2,6 +2,7 @@ from fastapi import Request
 from pydantic import BaseModel, Field, field_validator
 from src.models import APIOutput, Route, Role, TaskPriority
 from src.logics import create_task
+from src.logics.task.caching import invalidate_task_cache
 from uuid import UUID
 from datetime import datetime, timezone
 from typing import Optional
@@ -42,6 +43,9 @@ async def create_task_handler(request: Request, body: CreateTaskRequest):
             assignee_id=body.assignee_id,
             due_date=body.due_date
         )
+        # Invalidate task list caches for this organization
+        await invalidate_task_cache(organization_id=user.organization_id)
+
         return APIOutput.success(
             data=task.model_dump(mode="json"),
             message="Task created successfully",
