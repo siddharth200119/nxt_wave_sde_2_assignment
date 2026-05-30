@@ -10,6 +10,9 @@ from uuid import UUID
 class AuthenticationMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next):
         path = request.url.path
+        root_path = request.scope.get("root_path", "")
+        if root_path and path.startswith(root_path):
+            path = path[len(root_path):]
         
         # 1. Skip auth checks for public routes
         PUBLIC_PATHS = {

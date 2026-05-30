@@ -1,6 +1,5 @@
 from fastapi import FastAPI
 from src.api import main_router as APIRouter
-from src.sse import main_router as SSERouter
 import os
 from src.events import startup, shutdown
 from contextlib import asynccontextmanager
@@ -12,7 +11,8 @@ from fastapi.middleware.cors import CORSMiddleware
 
 load_dotenv()
 
-app = FastAPI()
+root_path = "/v1" if os.environ.get("ENV") == "PROD" else ""
+app = FastAPI(root_path=root_path)
 
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(request, exc: RequestValidationError):
@@ -79,7 +79,6 @@ app.add_middleware(
 )
 
 app.include_router(APIRouter)
-app.include_router(SSERouter)
 
 if __name__ == "__main__":
     import uvicorn
