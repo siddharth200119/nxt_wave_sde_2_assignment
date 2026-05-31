@@ -5,7 +5,7 @@ info:
 
 http:
   method: post
-  url: http://127.0.0.1:8000/api/auth/refresh
+  url: "{{base_url}}/api/auth/refresh"
   headers:
     - name: Content-Type
       value: application/json
@@ -26,7 +26,7 @@ settings:
 examples:
   - name: Success
     request:
-      url: http://127.0.0.1:8000/api/auth/refresh
+      url: "{{base_url}}/api/auth/refresh"
       method: post
       headers:
         - name: Content-Type
@@ -71,7 +71,7 @@ examples:
           }
   - name: Invalid Token
     request:
-      url: http://127.0.0.1:8000/api/auth/refresh
+      url: "{{base_url}}/api/auth/refresh"
       method: post
       headers:
         - name: Content-Type

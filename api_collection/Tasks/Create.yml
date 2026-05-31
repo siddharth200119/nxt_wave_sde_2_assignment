@@ -5,7 +5,7 @@ info:
 
 http:
   method: post
-  url: http://localhost:8000/api/task
+  url: "{{base_url}}/api/task"
   headers:
     - name: Authorization
       value: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwZjUzY2I5NS1mNmY3LTRkZjQtOTQ4ZC0xNDMyZmE5MDkwNDEiLCJvcmdfaWQiOiI2MGU4Yjc0MS1iOWJlLTQ0NDUtYjE2My0wZTBlYzg4NmU5MGYiLCJyb2xlIjoiTUFOQUdFUiIsImV4cCI6MTc4MDEzNTU2OH0.GgnM0Hn1BBNFNpYMYmIo_lJviL5PJbqBip8aAmDbqVQ
@@ -32,7 +32,7 @@ settings:
 examples:
   - name: Invalid Role
     request:
-      url: http://localhost:8000/api/task
+      url: "{{base_url}}/api/task"
       method: post
       headers:
         - name: Authorization
@@ -73,7 +73,7 @@ examples:
           }
   - name: Assignee Organization Mismatch
     request:
-      url: http://localhost:8000/api/task
+      url: "{{base_url}}/api/task"
       method: post
       headers:
         - name: Authorization
@@ -112,7 +112,7 @@ examples:
           }
   - name: Success
     request:
-      url: http://localhost:8000/api/task
+      url: "{{base_url}}/api/task"
       method: post
       headers:
         - name: Authorization
@@ -178,7 +178,7 @@ examples:
           }
   - name: Invalid Request
     request:
-      url: http://localhost:8000/api/task
+      url: "{{base_url}}/api/task"
       method: post
       headers:
         - name: Authorization

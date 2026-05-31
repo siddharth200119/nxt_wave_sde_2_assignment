@@ -5,7 +5,7 @@ info:
 
 http:
   method: post
-  url: http://127.0.0.1:8000/api/auth/login
+  url: "{{base_url}}/api/auth/login"
   headers:
     - name: Content-Type
       value: application/json
@@ -28,7 +28,7 @@ settings:
 examples:
   - name: Success
     request:
-      url: http://127.0.0.1:8000/api/auth/login
+      url: "{{base_url}}/api/auth/login"
       method: post
       headers:
         - name: Content-Type
@@ -75,7 +75,7 @@ examples:
           }
   - name: Invalid Credentials
     request:
-      url: http://127.0.0.1:8000/api/auth/login
+      url: "{{base_url}}/api/auth/login"
       method: post
       headers:
         - name: Content-Type

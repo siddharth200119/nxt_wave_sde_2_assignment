@@ -5,7 +5,7 @@ info:
 
 http:
   method: POST
-  url: http://127.0.0.1:8000/api/auth/register
+  url: "{{base_url}}/api/auth/register"
   headers:
     - name: Content-Type
       value: application/json
@@ -29,7 +29,7 @@ settings:
 examples:
   - name: Success
     request:
-      url: http://127.0.0.1:8000/api/auth/register
+      url: "{{base_url}}/api/auth/register"
       method: POST
       headers:
         - name: Content-Type
@@ -77,7 +77,7 @@ examples:
           }
   - name: Duplicate Email
     request:
-      url: http://127.0.0.1:8000/api/auth/register
+      url: "{{base_url}}/api/auth/register"
       method: POST
       headers:
         - name: Content-Type

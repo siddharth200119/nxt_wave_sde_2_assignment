@@ -5,7 +5,7 @@ info:
 
 http:
   method: patch
-  url: http://localhost:8000/api/task/ddd79aae-4058-4537-9525-c64799009b59
+  url: "{{base_url}}/api/task/ddd79aae-4058-4537-9525-c64799009b59"
   headers:
     - name: Authorization
       value: Bearer enJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyOTQ3ZjU2Yi00ZWViLTRmNzQtYTQyOS1kZjMwNmRjYzQ0YTQiLCJvcmdfaWQiOiI2MGU4Yjc0MS1iOWJlLTQ0NDUtYjE2My0wZTBlYzg4NmU5MGYiLCJyb2xlIjoiTUVNQkVSIiwiZXhwIjoxNzgwMTM3NjQ1fQ.DnnPesMvkGkv05IDvxSk1zP9JmLiuiCp0l_0M8bMKiU
@@ -32,7 +32,7 @@ settings:
 examples:
   - name: Update By Assigned Member
     request:
-      url: http://localhost:8000/api/task/ddd79aae-4058-4537-9525-c64799009b59
+      url: "{{base_url}}/api/task/ddd79aae-4058-4537-9525-c64799009b59"
       method: patch
       headers:
         - name: Authorization
@@ -96,7 +96,7 @@ examples:
           }
   - name: Update By Admin/Manager
     request:
-      url: http://localhost:8000/api/task/ddd79aae-4058-4537-9525-c64799009b59
+      url: "{{base_url}}/api/task/ddd79aae-4058-4537-9525-c64799009b59"
       method: patch
       headers:
         - name: Authorization
@@ -164,7 +164,7 @@ examples:
           }
   - name: Members are only allowed to update status
     request:
-      url: http://localhost:8000/api/task/ddd79aae-4058-4537-9525-c64799009b59
+      url: "{{base_url}}/api/task/ddd79aae-4058-4537-9525-c64799009b59"
       method: patch
       headers:
         - name: Authorization
@@ -205,7 +205,7 @@ examples:
           }
   - name: Update By Unassigned member
     request:
-      url: http://localhost:8000/api/task/ddd79aae-4058-4537-9525-c64799009b59
+      url: "{{base_url}}/api/task/ddd79aae-4058-4537-9525-c64799009b59"
       method: patch
       headers:
         - name: Authorization
@@ -244,7 +244,7 @@ examples:
           }
   - name: Invalid Token
     request:
-      url: http://localhost:8000/api/task/ddd79aae-4058-4537-9525-c64799009b59
+      url: "{{base_url}}/api/task/ddd79aae-4058-4537-9525-c64799009b59"
       method: patch
       headers:
         - name: Authorization

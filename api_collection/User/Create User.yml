@@ -5,7 +5,7 @@ info:
 
 http:
   method: POST
-  url: http://127.0.0.1:8000/api/user
+  url: "{{base_url}}/api/user"
   headers:
     - name: Authorization
       value: Bearer byJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTE0OGNmYy01NWJkLTRmYTYtODU4My04OGI1NmYxNmQwZGQiLCJvcmdfaWQiOiI2MGU4Yjc0MS1iOWJlLTQ0NDUtYjE2My0wZTBlYzg4NmU5MGYiLCJyb2xlIjoiTUFOQUdFUiIsImV4cCI6MTc4MDA5MzM2Mn0.xSPpsdkgqf0IDWtEIrxsO4OZj08xBRmHBkLJtlDXwgA
@@ -30,7 +30,7 @@ settings:
 examples:
   - name: Success
     request:
-      url: http://127.0.0.1:8000/api/user
+      url: "{{base_url}}/api/user"
       method: POST
       headers:
         - name: Authorization
@@ -75,7 +75,7 @@ examples:
           }
   - name: Invalid Role
     request:
-      url: http://127.0.0.1:8000/api/user
+      url: "{{base_url}}/api/user"
       method: POST
       headers:
         - name: Authorization
@@ -114,7 +114,7 @@ examples:
           }
   - name: Invalid Token
     request:
-      url: http://127.0.0.1:8000/api/user
+      url: "{{base_url}}/api/user"
       method: POST
       headers:
         - name: Authorization

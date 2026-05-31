@@ -1,0 +1,7 @@
+name: Production
+variables:
+  - name: base_url
+    value: https://nxt-wave-sde-2-assignment.siddharthramnani.me/v1
+    enabled: true
+    secret: false
+    type: text

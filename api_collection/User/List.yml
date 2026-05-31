@@ -5,7 +5,7 @@ info:
 
 http:
   method: get
-  url: http://127.0.0.1:8000/api/user/list
+  url: "{{base_url}}/api/user/list"
   headers:
     - name: Authorization
       value: Bearer ryJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1NmEzMTQyNi05ZjFiLTQ4OGQtODE4Yy1kMjZiNzA2ZmQ3Y2UiLCJvcmdfaWQiOiI2MGU4Yjc0MS1iOWJlLTQ0NDUtYjE2My0wZTBlYzg4NmU5MGYiLCJyb2xlIjoiTUVNQkVSIiwiZXhwIjoxNzgwMDk0MzI3fQ.XwaSaQrLU7SpTL_djNb1yWws8uHMSU3zP5TV3HcFYvY
@@ -20,7 +20,7 @@ settings:
 examples:
   - name: Success
     request:
-      url: http://127.0.0.1:8000/api/user/list
+      url: "{{base_url}}/api/user/list"
       method: get
       headers:
         - name: Authorization
@@ -75,7 +75,7 @@ examples:
           }
   - name: Role Not Allowed
     request:
-      url: http://127.0.0.1:8000/api/user/list
+      url: "{{base_url}}/api/user/list"
       method: get
       headers:
         - name: Authorization
@@ -104,7 +104,7 @@ examples:
           }
   - name: Invalid Token
     request:
-      url: http://127.0.0.1:8000/api/user/list
+      url: "{{base_url}}/api/user/list"
       method: get
       headers:
         - name: Authorization

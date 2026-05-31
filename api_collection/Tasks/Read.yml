@@ -5,7 +5,7 @@ info:
 
 http:
   method: get
-  url: http://localhost:8000/api/task/ddd79aae-4058-4537-9525-c64799009b59
+  url: "{{base_url}}/api/task/ddd79aae-4058-4537-9525-c64799009b59"
   headers:
     - name: Authorization
       value: Bearer ehJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwZjUzY2I5NS1mNmY3LTRkZjQtOTQ4ZC0xNDMyZmE5MDkwNDEiLCJvcmdfaWQiOiI2MGU4Yjc0MS1iOWJlLTQ0NDUtYjE2My0wZTBlYzg4NmU5MGYiLCJyb2xlIjoiTUFOQUdFUiIsImV4cCI6MTc4MDEzODIyNn0.A85l_Hn5CQFZUXmUWr1-3i9Id6FrIUZ-JWrQUNxa4j0
@@ -22,7 +22,7 @@ settings:
 examples:
   - name: Unassigned Member
     request:
-      url: http://localhost:8000/api/task/ddd79aae-4058-4537-9525-c64799009b59
+      url: "{{base_url}}/api/task/ddd79aae-4058-4537-9525-c64799009b59"
       method: get
       headers:
         - name: Authorization
@@ -51,7 +51,7 @@ examples:
           }
   - name: Valid Member Access
     request:
-      url: http://localhost:8000/api/task/ddd79aae-4058-4537-9525-c64799009b59
+      url: "{{base_url}}/api/task/ddd79aae-4058-4537-9525-c64799009b59"
       method: get
       headers:
         - name: Authorization
@@ -107,7 +107,7 @@ examples:
           }
   - name: Manager Access
     request:
-      url: http://localhost:8000/api/task/ddd79aae-4058-4537-9525-c64799009b59
+      url: "{{base_url}}/api/task/ddd79aae-4058-4537-9525-c64799009b59"
       method: get
       headers:
         - name: Authorization
@@ -163,7 +163,7 @@ examples:
           }
   - name: Invalid Token
     request:
-      url: http://localhost:8000/api/task/ddd79aae-4058-4537-9525-c64799009b59
+      url: "{{base_url}}/api/task/ddd79aae-4058-4537-9525-c64799009b59"
       method: get
       headers:
         - name: Authorization

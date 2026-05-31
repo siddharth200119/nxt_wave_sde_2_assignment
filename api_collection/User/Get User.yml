@@ -5,7 +5,7 @@ info:
 
 http:
   method: get
-  url: http://127.0.0.1:8000/api/user/61148cfc-55bd-4fa6-8583-88b56f16d0dd
+  url: "{{base_url}}/api/user/61148cfc-55bd-4fa6-8583-88b56f16d0dd"
   headers:
     - name: Authorization
       value: Bearer byJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3OWJmNWM5Ni1kZDQ1LTRiODQtOTFkOS05MjIwMGNhMDQ1MGMiLCJvcmdfaWQiOiI2MGU4Yjc0MS1iOWJlLTQ0NDUtYjE2My0wZTBlYzg4NmU5MGYiLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3ODAwOTE5MTB9.yu5nFEM7Fi6H8BEtTiyQdorx7asG4VDrROHSB13FmMw
@@ -20,7 +20,7 @@ settings:
 examples:
   - name: Invalid Role
     request:
-      url: http://127.0.0.1:8000/api/user/7b2c0db9-467b-4d43-85af-375fa05ef193
+      url: "{{base_url}}/api/user/7b2c0db9-467b-4d43-85af-375fa05ef193"
       method: get
       headers:
         - name: Authorization
@@ -49,7 +49,7 @@ examples:
           }
   - name: User Not Found
     request:
-      url: http://127.0.0.1:8000/api/user/7b2c0db9-467b-4d43-85af-375fa05ef193
+      url: "{{base_url}}/api/user/7b2c0db9-467b-4d43-85af-375fa05ef193"
       method: get
       headers:
         - name: Authorization
@@ -76,7 +76,7 @@ examples:
           }
   - name: Success
     request:
-      url: http://127.0.0.1:8000/api/user/61148cfc-55bd-4fa6-8583-88b56f16d0dd
+      url: "{{base_url}}/api/user/61148cfc-55bd-4fa6-8583-88b56f16d0dd"
       method: get
       headers:
         - name: Authorization
@@ -111,7 +111,7 @@ examples:
           }
   - name: Invalid Access Token
     request:
-      url: http://127.0.0.1:8000/api/user/61148cfc-55bd-4fa6-8583-88b56f16d0dd
+      url: "{{base_url}}/api/user/61148cfc-55bd-4fa6-8583-88b56f16d0dd"
       method: get
       headers:
         - name: Authorization

@@ -5,7 +5,7 @@ info:
 
 http:
   method: GET
-  url: http://localhost:8000/api/task/list?page=1&limit=10&status=TODO&priority=HIGH&assignee_id=56a31426-9f1b-488d-818c-d26b706fd7ce
+  url: "{{base_url}}/api/task/list?page=1&limit=10&status=TODO&priority=HIGH&assignee_id=56a31426-9f1b-488d-818c-d26b706fd7ce"
   headers:
     - name: Authorization
       value: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyOTQ3ZjU2Yi00ZWViLTRmNzQtYTQyOS1kZjMwNmRjYzQ0YTQiLCJvcmdfaWQiOiI2MGU4Yjc0MS1iOWJlLTQ0NDUtYjE2My0wZTBlYzg4NmU5MGYiLCJyb2xlIjoiTUVNQkVSIiwiZXhwIjoxNzgwMTM5NjczfQ.7aQPcu0iZ5YdbbDZcZosTOZKAQZ1X9ZiyyP-nJUAtg4
@@ -36,7 +36,7 @@ settings:
 examples:
   - name: Basic Request
     request:
-      url: http://localhost:8000/api/task/list?page=1&limit=10
+      url: "{{base_url}}/api/task/list?page=1&limit=10"
       method: get
       headers:
         - name: Authorization
@@ -133,7 +133,7 @@ examples:
           }
   - name: Unauthorized
     request:
-      url: http://localhost:8000/api/task/list?page=1&limit=10&status=TODO&priority=HIGH&assignee_id=56a31426-9f1b-488d-818c-d26b706fd7ce
+      url: "{{base_url}}/api/task/list?page=1&limit=10&status=TODO&priority=HIGH&assignee_id=56a31426-9f1b-488d-818c-d26b706fd7ce"
       method: GET
       headers:
         - name: Authorization
@@ -176,7 +176,7 @@ examples:
           }
   - name: Manager Role with Filters
     request:
-      url: http://localhost:8000/api/task/list?page=1&limit=10&status=TODO&priority=HIGH&assignee_id=56a31426-9f1b-488d-818c-d26b706fd7ce
+      url: "{{base_url}}/api/task/list?page=1&limit=10&status=TODO&priority=HIGH&assignee_id=56a31426-9f1b-488d-818c-d26b706fd7ce"
       method: GET
       headers:
         - name: Authorization
@@ -282,7 +282,7 @@ examples:
           }
   - name: Member Self Filter
     request:
-      url: http://localhost:8000/api/task/list?page=1&limit=10&status=TODO&priority=HIGH&assignee_id=56a31426-9f1b-488d-818c-d26b706fd7ce
+      url: "{{base_url}}/api/task/list?page=1&limit=10&status=TODO&priority=HIGH&assignee_id=56a31426-9f1b-488d-818c-d26b706fd7ce"
       method: GET
       headers:
         - name: Authorization
@@ -388,7 +388,7 @@ examples:
           }
   - name: Member not self filter
     request:
-      url: http://localhost:8000/api/task/list?page=1&limit=10&status=TODO&priority=HIGH&assignee_id=56a31426-9f1b-488d-818c-d26b706fd7ce
+      url: "{{base_url}}/api/task/list?page=1&limit=10&status=TODO&priority=HIGH&assignee_id=56a31426-9f1b-488d-818c-d26b706fd7ce"
       method: GET
       headers:
         - name: Authorization

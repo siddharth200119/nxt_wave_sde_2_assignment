@@ -5,7 +5,7 @@ info:
 
 http:
   method: patch
-  url: http://127.0.0.1:8000/api/user/61148cfc-55bd-4fa6-8583-88b56f16d0de
+  url: "{{base_url}}/api/user/61148cfc-55bd-4fa6-8583-88b56f16d0de"
   headers:
     - name: Authorization
       value: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3OWJmNWM5Ni1kZDQ1LTRiODQtOTFkOS05MjIwMGNhMDQ1MGMiLCJvcmdfaWQiOiI2MGU4Yjc0MS1iOWJlLTQ0NDUtYjE2My0wZTBlYzg4NmU5MGYiLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3ODAwOTE5MTB9.yu5nFEM7Fi6H8BEtTiyQdorx7asG4VDrROHSB13FmMw
@@ -29,7 +29,7 @@ settings:
 examples:
   - name: Success
     request:
-      url: http://127.0.0.1:8000/api/user/61148cfc-55bd-4fa6-8583-88b56f16d0dd
+      url: "{{base_url}}/api/user/61148cfc-55bd-4fa6-8583-88b56f16d0dd"
       method: patch
       headers:
         - name: Authorization
@@ -73,7 +73,7 @@ examples:
           }
   - name: Invalid Role
     request:
-      url: http://127.0.0.1:8000/api/user/61148cfc-55bd-4fa6-8583-88b56f16d0dd
+      url: "{{base_url}}/api/user/61148cfc-55bd-4fa6-8583-88b56f16d0dd"
       method: patch
       headers:
         - name: Authorization
@@ -111,7 +111,7 @@ examples:
           }
   - name: Invalid Token
     request:
-      url: http://127.0.0.1:8000/api/user/61148cfc-55bd-4fa6-8583-88b56f16d0dd
+      url: "{{base_url}}/api/user/61148cfc-55bd-4fa6-8583-88b56f16d0dd"
       method: patch
       headers:
         - name: Authorization
@@ -147,7 +147,7 @@ examples:
           }
   - name: User Not Found
     request:
-      url: http://127.0.0.1:8000/api/user/61148cfc-55bd-4fa6-8583-88b56f16d0de
+      url: "{{base_url}}/api/user/61148cfc-55bd-4fa6-8583-88b56f16d0de"
       method: patch
       headers:
         - name: Authorization

@@ -5,7 +5,7 @@ info:
 
 http:
   method: patch
-  url: http://127.0.0.1:8000/api/organization/60e8b741-b9be-4445-b163-0e0ec886e90f
+  url: "{{base_url}}/api/organization/60e8b741-b9be-4445-b163-0e0ec886e90f"
   headers:
     - name: Authorization
       value: Bearer byJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1NmEzMTQyNi05ZjFiLTQ4OGQtODE4Yy1kMjZiNzA2ZmQ3Y2UiLCJvcmdfaWQiOiI2MGU4Yjc0MS1iOWJlLTQ0NDUtYjE2My0wZTBlYzg4NmU5MGYiLCJyb2xlIjoiTUVNQkVSIiwiZXhwIjoxNzgwMDkyMTA0fQ.Dv4K7mZZCQXKLMI2D354PdG0w9-DItCd-1ZPhIOlaWI
@@ -28,7 +28,7 @@ settings:
 examples:
   - name: Success
     request:
-      url: http://127.0.0.1:8000/api/organization/60e8b741-b9be-4445-b163-0e0ec886e90f
+      url: "{{base_url}}/api/organization/60e8b741-b9be-4445-b163-0e0ec886e90f"
       method: patch
       headers:
         - name: Authorization
@@ -68,7 +68,7 @@ examples:
           }
   - name: Organization Not Found
     request:
-      url: http://127.0.0.1:8000/api/organization/60e8b741-b9be-4445-b163-0e0ec886e90e
+      url: "{{base_url}}/api/organization/60e8b741-b9be-4445-b163-0e0ec886e90e"
       method: patch
       headers:
         - name: Authorization
@@ -103,7 +103,7 @@ examples:
           }
   - name: Role Not Allowed
     request:
-      url: http://127.0.0.1:8000/api/organization/60e8b741-b9be-4445-b163-0e0ec886e90f
+      url: "{{base_url}}/api/organization/60e8b741-b9be-4445-b163-0e0ec886e90f"
       method: patch
       headers:
         - name: Authorization
@@ -140,7 +140,7 @@ examples:
           }
   - name: Invalid Token
     request:
-      url: http://127.0.0.1:8000/api/organization/60e8b741-b9be-4445-b163-0e0ec886e90f
+      url: "{{base_url}}/api/organization/60e8b741-b9be-4445-b163-0e0ec886e90f"
       method: patch
       headers:
         - name: Authorization
